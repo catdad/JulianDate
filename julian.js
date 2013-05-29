@@ -52,5 +52,19 @@
 		}
 	}
 	
+	window.julian = julian;
 	julian.displayJulian().displayDate();
+	
+	var showInfo = function(){
+		var card = document.getElementsByClassName("info card")[0];
+		card.classList.remove("hide");
+	}
+	
+	var hideInfo = function(){
+		var card = document.getElementsByClassName("info card")[0];
+		card.classList.add("hide");
+	}
+	
+	document.getElementById("info").onclick = showInfo;
+	document.getElementById("close").onclick = hideInfo;
 })();

@@ -10,16 +10,19 @@ body{
 	color: #898989;
 	font-family: 'Helvetica', 'Helvetica Neue', sans-serif;
 	font-size: 1em;
-	
 	text-align: center;
 }
 
-#card{
-	margin: 30px;
+.hide{ display: none !important; }
+.show{ display: block; }
+
+.card{
+	position: relative;
+	margin: 30px auto;
 	padding: 50px;
 	background-color: white;
-	display: inline-block;
-	
+	display: block;
+	width: 20em;
 	box-shadow: 0px 5px 2px -1px #ccc;
 	border-radius: 2px;
 }
@@ -32,3 +35,17 @@ body{
 #julian{
 	font-size: 10em;
 }
+
+#info, #close{
+	position: absolute;
+	font-weight: bold;
+	
+	bottom: 0px;
+	right: 0px;
+	padding: 10px;
+	
+	cursor: pointer;
+}
+
+#info{ color: #35b4e3; }
+#close{ color: red; }
