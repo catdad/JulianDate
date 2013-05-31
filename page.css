@@ -11,6 +11,10 @@ body{
 	font-family: 'Helvetica', 'Helvetica Neue', sans-serif;
 	font-size: 1em;
 	text-align: center;
+	
+	width: 90%;
+	max-width: 1000px;
+	margin: 0 auto;
 }
 
 .hide{ display: none !important; }
@@ -18,11 +22,13 @@ body{
 
 .card{
 	position: relative;
-	margin: 30px auto;
-	padding: 50px;
+	margin: 1.8em auto;
+	padding: 50px 0;
 	background-color: white;
 	display: block;
-	width: 20em;
+	width: 100%;
+	max-width: 28em;
+	
 	box-shadow: 0px 5px 2px -1px #ccc;
 	border-radius: 2px;
 }
@@ -51,8 +57,6 @@ body{
 #close{ color: red; }
 
 /* and (resolution: 163dpi) */
-
 @media screen and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 1.5){
-	body{ font-size: .7em; }
-	.card{ margin: 2em auto; }
+	body{ font-size: .75em; }
 }
