@@ -16,21 +16,26 @@
 </head>
 
 <body>
-	<div class="card">
-		<div id="date"></div>
-		<div id="julian"></div>
-		<div>
-			<input type="date" id="dateInput" />
+	
+	<div id="container">
+		<div class="card">
+			<div id="date"></div>
+			<div id="julian"></div>
+			<div>
+				<input type="date" id="dateInput" />
+			</div>
+			<div id="today" class="hide">( today )</div>
+			<div id="info">( i )</div>
 		</div>
-		<div id="today" class="hide">( today )</div>
-		<div id="info">( i )</div>
+		
+		<div class="info card hide">
+			This is explanatory text about what the hell this site is.
+			<div id="close">( x )</div>
+		</div>
 	</div>
 	
-	<div class="info card hide">
-		This is explanatory text about what the hell this site is.
-		<div id="close">( x )</div>
-	</div>
-
+	<div id="footer">Created by <a href="https://github.com/catdad">catdad</a>. Find it on <a href="https://github.com/catdad/JulianDate">GitHub</a>.<div>
+	
 	<script src="julian.js" type="text/javascript"></script>
 </body>
 </html>
