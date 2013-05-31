@@ -7,11 +7,11 @@
 	}
 
 	function getDay(date){
-		var day = date.getDate(),
-			month = date.getMonth() + 1, //month starts at 0
-			year = date.getFullYear(),
+		var day = date.getUTCDate(),
+			month = date.getUTCMonth() + 1, //month starts at 0
+			year = date.getUTCFullYear(),
 			doy = 0;
-		
+			
 		switch(month){
 			case 1:
 				doy = day;
@@ -37,7 +37,7 @@
 	
 	var julian = {
 		//vars
-		date: new Date(),
+		date: new Date( (new Date()).toDateString() ),
 		julianDOM: document.getElementById("julian"),
 		dateDOM: document.getElementById("date"),
 		
@@ -47,7 +47,7 @@
 			return this;
 		},
 		displayDate: function(){
-			this.dateDOM.innerHTML = this.date.toDateString();
+			this.dateDOM.innerHTML = this.date.toUTCString().substr(0, 16);
 			return this;
 		}
 	}
@@ -77,15 +77,8 @@
 	
 	document.getElementById("dateInput").onchange = function(ev){
 		var date = new Date(ev.target.value);
-		var customDate = {
-			getDate: function(){ return date.getUTCDate(); },
-			getMonth: function(){ return date.getUTCMonth(); },
-			getFullYear: function(){ return date.getUTCFullYear(); },
-			toDateString: function(){ return date.toUTCString().substr(0, 16) }, //.replace(/,/g, ''); },
-			getJulian: function(){ return getDay(this); }
-		}
 		
-		julian.date = customDate;
+		julian.date = date;
 		julian.displayJulian().displayDate();
 	};
 })();
