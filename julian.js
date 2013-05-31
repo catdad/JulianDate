@@ -81,7 +81,7 @@
 			getDate: function(){ return date.getUTCDate(); },
 			getMonth: function(){ return date.getUTCMonth(); },
 			getFullYear: function(){ return date.getUTCFullYear(); },
-			toDateString: function(){ return date.toUTCString().substr(0, 16); },
+			toDateString: function(){ return date.toUTCString().substr(0, 16) }, //.replace(/,/g, ''); },
 			getJulian: function(){ return getDay(this); }
 		}
 		
