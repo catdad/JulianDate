@@ -42,7 +42,7 @@ body{
 	font-size: 10em;
 }
 
-#info, #close{
+#info, #close, #today{
 	position: absolute;
 	bottom: 0px;
 	right: 0px;
@@ -51,8 +51,9 @@ body{
 	font-weight: bold;
 }
 
-#info{ color: #35b4e3; }
+#info, #today{ color: #35b4e3; }
 #close{ color: red; }
+#today{ right: auto; left: 0 }
 
 #dateInput{
 	position: absolute;

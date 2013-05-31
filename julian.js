@@ -67,8 +67,24 @@
 		card.classList.add("hide");
 	}
 	
+	var showToday = function(){
+		document.getElementById("dateInput").value = "";
+		document.getElementById("today").classList.remove("hide");
+	}
+	
+	var hideToday = function(){
+		document.getElementById("today").classList.add("hide");
+	}
+	
 	document.getElementById("info").onclick = showInfo;
 	document.getElementById("close").onclick = hideInfo;
+	
+	document.getElementById("today").onclick = function(){
+		julian.date = new Date( (new Date()).toDateString() );
+		julian.displayJulian().displayDate();
+		
+		hideToday();
+	};
 	
 	document.getElementById("date").onclick = function(){
 		document.getElementById("dateInput").focus();
@@ -76,9 +92,9 @@
 	};
 	
 	document.getElementById("dateInput").onchange = function(ev){
-		var date = new Date(ev.target.value);
-		
-		julian.date = date;
+		julian.date = new Date(ev.target.value);
 		julian.displayJulian().displayDate();
+		
+		showToday();
 	};
 })();
