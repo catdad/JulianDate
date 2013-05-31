@@ -16,7 +16,7 @@ body{
 	max-width: 1000px;
 	margin: 0 auto;
 	
-	padding: 0 0 .8em 0; /* bottom padding for the footer */
+	padding: 0 0 .35em 0; /* bottom padding for the footer */
 }
 
 .hide{ display: none !important; }
@@ -76,7 +76,7 @@ body{
 	
 	font-size: .7em;
 	background-color: #e5e5e5;
-	box-shadow: 0 0 10px 2px #e5e5e5;
+	box-shadow: 0 0 5px 2px #e5e5e5;
 }
 
 #footer a { color: #35b4e3; }
