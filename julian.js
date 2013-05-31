@@ -52,9 +52,11 @@
 		}
 	}
 	
+	//initialize
 	window.julian = julian;
 	julian.displayJulian().displayDate();
 	
+	//events
 	var showInfo = function(){
 		var card = document.getElementsByClassName("info card")[0];
 		card.classList.remove("hide");
@@ -67,4 +69,23 @@
 	
 	document.getElementById("info").onclick = showInfo;
 	document.getElementById("close").onclick = hideInfo;
+	
+	document.getElementById("date").onclick = function(){
+		document.getElementById("dateInput").focus();
+		document.getElementById("dateInput").click();
+	};
+	
+	document.getElementById("dateInput").onchange = function(ev){
+		var date = new Date(ev.target.value);
+		var customDate = {
+			getDate: function(){ return date.getUTCDate(); },
+			getMonth: function(){ return date.getUTCMonth(); },
+			getFullYear: function(){ return date.getUTCFullYear(); },
+			toDateString: function(){ return date.toUTCString().substr(0, 16); },
+			getJulian: function(){ return getDay(this); }
+		}
+		
+		julian.date = customDate;
+		julian.displayJulian().displayDate();
+	};
 })();

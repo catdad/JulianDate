@@ -44,17 +44,24 @@ body{
 
 #info, #close{
 	position: absolute;
-	font-weight: bold;
-	
 	bottom: 0px;
 	right: 0px;
 	padding: 10px;
-	
 	cursor: pointer;
+	font-weight: bold;
 }
 
 #info{ color: #35b4e3; }
 #close{ color: red; }
+
+#dateInput{
+	position: absolute;
+	top: 0;
+	width: 0px;
+	height: 0px;
+	border: none;
+}
+#dateInput:focus{ border: none; outline: none; }
 
 /* and (resolution: 163dpi) */
 @media screen and (max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 1.5){
