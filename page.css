@@ -60,8 +60,9 @@ body{
 #dateInput{
 	position: absolute;
 	top: 0;
-	width: 0px;
-	height: 0px;
+	-width: 0px;
+	-height: 0px;
+	z-index: -1;
 	border: none;
 }
 #dateInput:focus{ border: none; outline: none; }
