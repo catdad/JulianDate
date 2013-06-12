@@ -177,8 +177,8 @@
 	};
 	
 	document.getElementById("dateInput").onchange = function(ev){
-		document.getElementById("dateInput").click(); //hack necessary for immediate update
-		julian.changeDate( new Date(ev.target.value) );
+		this.click(); //hack necessary for immediate update
+		julian.changeDate( new Date(this.value) );
 		this.value = null;
 		
 		showToday();
@@ -190,12 +190,13 @@
 		document.getElementById("julianInput").click();
 	};
 	
+	//immedaitely show changes
 	document.getElementById("julianInput").oninput = function(ev){
-		//julian.changeJulian(Number(ev.target.valueAsNumber));
 		julian.changeJulian(Number(this.value));
 		
 		showToday();
 	};
+	//reset value to null
 	document.getElementById("julianInput").onchange = function(){
 		this.value = null;
 	}
