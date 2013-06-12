@@ -1,11 +1,15 @@
 (function(){
+	//helper - get element
+	function O(id){
+		return document.getElementById(id);
+	}
+	
 	function isLeap(y){
 		if (y%400 === 0) return true;
 		else if (y%100 === 0) return false;
 		else if (y%4 === 0) return true;
 		else return false;
 	}
-	
 	
 	function getJulian(date){
 		var day = date.getUTCDate(),
@@ -86,14 +90,14 @@
 				break;
 		}
 		
-		/*
+		/* don't know why this doesn't work
 		var newDate = new Date();
 		newDate.setDate = day;
 		newDate.setFullYear = year;
 		newDate.setMonth = (month - 1); //month starts at 0
 		/* */
 		
-		var nd = new Date(year+'-'+month+'-'+day);
+		var nd = new Date([year, month, day].join("-")); //get date from ISO string
 		
 		//var UTCDate = new Date( newDate.toDateString() ); //code expects UTC Date
 		
@@ -101,26 +105,18 @@
 		return nd;
 	}
 	
-	window.getDate = getDate;
-	
 	Date.prototype.getJulian = function(){ return getJulian(this); }
 	
 	var julian = {
 		//vars
 		date: new Date( (new Date()).toDateString() ), //code expects UTC date
-		julianDOM: document.getElementById("julian"),
-		dateDOM: document.getElementById("date"),
+		julianDOM: O("julian"),
+		dateDOM: O("date"),
 		
 		//functions
 		changeJulian: function(val){
-			//this.julianDOM.innerHTML = val;
-			console.log(val);
-			
 			this.date = getDate(val);
-			
-			console.log(this.date);
 			this.displayJulian().displayDate();
-			console.log('change done');
 		},
 		changeDate: function(val){
 			this.date = val;
