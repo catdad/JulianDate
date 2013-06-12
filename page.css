@@ -63,7 +63,7 @@ body{
 	line-height: 1.4em;
 }
 
-#dateInput{
+#dateInput, #julianInput{
 	position: absolute;
 	top: 0;
 	-width: 0px;
@@ -71,7 +71,7 @@ body{
 	z-index: -1;
 	border: none;
 }
-#dateInput:focus{ border: none; outline: none; }
+#dateInput:focus, #julianInput:focus{ border: none; outline: none; }
 
 #footer{
 	position: fixed;
