@@ -148,18 +148,18 @@
 	}
 	
 	var showToday = function(){
-		document.getElementById("dateInput").value = "";
-		document.getElementById("today").classList.remove("hide");
+		O("dateInput").value = "";
+		O("today").classList.remove("hide");
 	}
 	
 	var hideToday = function(){
-		document.getElementById("today").classList.add("hide");
+		O("today").classList.add("hide");
 	}
 	
-	document.getElementById("info").onclick = showInfo;
-	document.getElementById("close").onclick = hideInfo;
+	O("info").onclick = showInfo;
+	O("close").onclick = hideInfo;
 	
-	document.getElementById("today").onclick = function(){
+	O("today").onclick = function(){
 		julian.date = new Date( (new Date()).toDateString() );
 		julian.displayJulian().displayDate();
 		
@@ -167,12 +167,12 @@
 	};
 	
 	//select custom date
-	document.getElementById("date").onclick = function(){
-		document.getElementById("dateInput").focus();
-		document.getElementById("dateInput").click();
+	O("date").onclick = function(){
+		O("dateInput").focus();
+		O("dateInput").click();
 	};
 	
-	document.getElementById("dateInput").onchange = function(ev){
+	O("dateInput").onchange = function(ev){
 		this.click(); //hack necessary for immediate update
 		julian.changeDate( new Date(this.value) );
 		this.value = null;
@@ -181,19 +181,19 @@
 	};
 	
 	//select custom julian
-	document.getElementById("julian").onclick = function(){
-		document.getElementById("julianInput").focus();
-		document.getElementById("julianInput").click();
+	O("julian").onclick = function(){
+		O("julianInput").focus();
+		O("julianInput").click();
 	};
 	
 	//immedaitely show changes
-	document.getElementById("julianInput").oninput = function(ev){
+	O("julianInput").oninput = function(ev){
 		julian.changeJulian(Number(this.value));
 		
 		showToday();
 	};
 	//reset value to null
-	document.getElementById("julianInput").onchange = function(){
+	O("julianInput").onchange = function(){
 		this.value = null;
 	}
 })();
