@@ -57,6 +57,12 @@ body{
 #close{ color: red; }
 #today{ right: auto; left: 0 }
 
+.text{
+	padding: 0 2em;
+	text-align: left;
+	line-height: 1.4em;
+}
+
 #dateInput{
 	position: absolute;
 	top: 0;
