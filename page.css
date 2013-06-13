@@ -66,8 +66,8 @@ body{
 #dateInput, #julianInput{
 	position: absolute;
 	top: 0;
-	-width: 0px;
-	-height: 0px;
+	width: 1px;
+	opacity: 0;
 	z-index: -1;
 	border: none;
 }
