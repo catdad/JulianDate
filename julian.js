@@ -122,6 +122,10 @@
 			this.date = val;
 			this.displayJulian().displayDate();
 		},
+		error: function(){
+			this.julianDOM.innerHTML = "error";
+			this.dateDOM.innerHTML = "Invalid Date";
+		},
 		displayJulian: function(){
 			this.julianDOM.innerHTML = this.date.getJulian();
 			return this;
@@ -188,7 +192,10 @@
 	
 	//immedaitely show changes
 	O("julianInput").oninput = function(ev){
-		julian.changeJulian(Number(this.value));
+		if (this.value < 367 && this.value > 0)
+			julian.changeJulian(Number(this.value));
+		else
+			julian.error();
 		
 		showToday();
 	};
