@@ -35,6 +35,8 @@ body{
 	border-radius: 2px;
 }
 
+.cache.card{ padding: 20px 0; background: #F8EEA5; }
+
 #date{
 	font-size: 2em;
 	margin-bottom: 10px;
@@ -54,8 +56,8 @@ body{
 }
 
 #info, #today{ color: #35b4e3; }
-#close{ color: red; }
 #today{ right: auto; left: 0 }
+#close{ color: red; }
 
 .text{
 	padding: 0 2em;

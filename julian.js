@@ -160,6 +160,33 @@
 		O("today").classList.add("hide");
 	}
 	
+	function offlineMode(){
+		console.log("going offline");
+		
+		var card = document.getElementsByClassName("cache card")[0];
+		card.classList.remove("hide");
+	}
+	
+	function onlineMode(){
+		console.log("going online");
+		window.applicationCache.update(); //check for update
+		
+		var card = document.getElementsByClassName("cache card")[0];
+		card.classList.add("hide");
+	}
+	
+	// online/offline listeners
+	window.addEventListener( "offline", offlineMode, false);
+	window.addEventListener( "online", onlineMode, false);
+	window.applicationCache.addEventListener('noupdate', function(){ /* console.log("no update"); */ }, false);
+	window.applicationCache.addEventListener('updateready', function(){
+		window.applicationCache.swapCache();
+		console.log("swap cache");
+	}, false);
+	//initial check
+	if (!navigator.onLine) offlineMode();
+	
+	//info card listeners
 	O("info").onclick = showInfo;
 	O("close").onclick = hideInfo;
 	
