@@ -176,13 +176,15 @@
 	}
 	
 	// online/offline listeners
-	window.addEventListener( "offline", offlineMode, false);
-	window.addEventListener( "online", onlineMode, false);
-	window.applicationCache.addEventListener('noupdate', function(){ /* console.log("no update"); */ }, false);
-	window.applicationCache.addEventListener('updateready', function(){
-		window.applicationCache.swapCache();
-		console.log("swap cache");
-	}, false);
+	if (window.applicationCache){
+		window.addEventListener( "offline", offlineMode, false);
+		window.addEventListener( "online", onlineMode, false);
+		window.applicationCache.addEventListener('noupdate', function(){ /* console.log("no update"); */ }, false);
+		window.applicationCache.addEventListener('updateready', function(){
+			window.applicationCache.swapCache();
+			console.log("swap cache");
+		}, false);
+	}
 	//initial check
 	if (!navigator.onLine) offlineMode();
 	
