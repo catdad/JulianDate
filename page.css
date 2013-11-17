@@ -35,7 +35,57 @@ body{
 	border-radius: 2px;
 }
 
-.cache.card{ padding: 20px 0; background: #F8EEA5; }
+.card.short{ padding: 20px 0; }
+.cache.card{ background: #F8EEA5; }
+
+@-webkit-keyframes openCard{
+	0%{ max-height: 1em; background: rgba(255,255,255,.5); }
+	30%{ background: white; }
+	100%{ max-height: 450px; }
+}
+@-webkit-keyframes closeCard{
+	0%{ max-height: 450px; background: white; }
+	70%{ background: white; }
+	100%{ max-height: 1em; background: rgba(255,255,255,.5); }
+}
+@-webkit-keyframes textShow{
+	0%{ opacity: 0; }
+	90%{ opacity: 0; }
+	100%{ opacity: 1; }
+}
+@-webkit-keyframes textHide{
+	0%{ opacity: 1; }
+	10%{ opacity: 0; }
+	100%{ opacity: 0; }
+}
+
+.card.toggle{
+	overflow-y: hidden;
+	max-height: 1em;
+	background: rgba(255,255,255,.5);	
+	/* hack to hardware accelerate css animations */
+	-webkit-transform: translate3d(0,0,0);
+}
+/* animate card open/close */
+.card.toggle.close{
+	max-height: 1em;
+	-webkit-animation: closeCard .5s ease;
+}
+.card.toggle.open{
+	background: white;
+	max-height: 450px;
+	-webkit-animation: openCard .5s ease;
+}
+/* animate text show/hide */
+.card.toggle.close .text{ -webkit-animation: textHide .5s ease; opacity: 0; }
+.card.toggle.open .text{ -webkit-animation: textShow .5s ease; opacity: 1; }
+
+.card .trigger{ cursor: pointer; }
+.card .text{
+	padding: 20px 2em;
+	text-align: left;
+	line-height: 1.4em;
+}
 
 #date{
 	font-size: 2em;
@@ -46,23 +96,16 @@ body{
 	font-size: 10em;
 }
 
-#info, #close, #today{
+#today{
 	position: absolute;
 	bottom: 0px;
 	right: 0px;
 	padding: 10px;
 	cursor: pointer;
 	font-weight: bold;
-}
-
-#info, #today{ color: #35b4e3; }
-#today{ right: auto; left: 0 }
-#close{ color: red; }
-
-.text{
-	padding: 0 2em;
-	text-align: left;
-	line-height: 1.4em;
+	color: #35b4e3;
+	right: auto;
+	left: 0;
 }
 
 #dateInput, #julianInput{

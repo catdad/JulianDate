@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html manifest="cache.manifest">
+<html manifest="cache.manifest" >
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<!--The viewport meta tag is used to improve the presentation and behavior of the samples
@@ -10,7 +10,6 @@
 	<!-- Apple web app tags -->
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
-	
 	<!-- vendor neutral web app tags -->
 	<meta name="mobile-web-app-capable" content="yes">
 	
@@ -33,10 +32,10 @@
 		<input type="date" id="dateInput" />
 		<input type="number" id="julianInput" minimum="1" maximum="366" />
 		<div id="today" class="hide">( today )</div>
-		<div id="info">( i )</div>
 	</div>
 	
-	<div class="info card hide">
+	<div class="short info card toggle">
+		<div class="trigger">More Info</div>
 		<div class="text">
 		When buying eggs, the date in which the eggs were collected is displayed on the package.
 		However, instead of a regularly formatted date, it is displayed as the number of days from
@@ -50,10 +49,9 @@
 		<br/><br/>
 		Cheers!
 		</div>
-		<div id="close">( x )</div>
 	</div>
 	
-	<div class="cache card hide">
+	<div class="short cache card hide">
 		Now running in offline mode.
 	</div>
 

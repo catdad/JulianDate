@@ -3,6 +3,10 @@
 	function O(id){
 		return document.getElementById(id);
 	}
+	function C(selector, elem){
+		elem = (elem) ? elem : document;
+		return elem.getElementsByClassName(selector)[0];
+	}
 	
 	function isLeap(y){
 		if (y%400 === 0) return true;
@@ -140,17 +144,23 @@
 	window.julian = julian;
 	julian.displayJulian().displayDate();
 	
+	var infoCard = C("toggle card");
+	infoCard.trigger = C("trigger", infoCard);
+	infoCard.text = C("text", infoCard);
+	infoCard.trigger.onclick = function(ev){
+		if (infoCard.classList.contains("open")) {
+			infoCard.trigger.innerHTML = "More Info";
+			infoCard.classList.remove("open");
+			infoCard.classList.add("close");
+		}
+		else {
+			infoCard.trigger.innerHTML = "Less Info";
+			infoCard.classList.remove("close");
+			infoCard.classList.add("open");
+		}
+	};
+	
 	//events
-	var showInfo = function(){
-		var card = document.getElementsByClassName("info card")[0];
-		card.classList.remove("hide");
-	}
-	
-	var hideInfo = function(){
-		var card = document.getElementsByClassName("info card")[0];
-		card.classList.add("hide");
-	}
-	
 	var showToday = function(){
 		O("dateInput").value = "";
 		O("today").classList.remove("hide");
@@ -188,17 +198,6 @@
 	//initial check
 	if (!navigator.onLine) offlineMode();
 	
-	//info card listeners
-	O("info").onclick = showInfo;
-	O("close").onclick = hideInfo;
-	
-	O("today").onclick = function(){
-		julian.date = new Date( (new Date()).toDateString() );
-		julian.displayJulian().displayDate();
-		
-		hideToday();
-	};
-	
 	//select custom date
 	O("date").onclick = function(){
 		O("dateInput").focus();
@@ -232,4 +231,11 @@
 	O("julianInput").onchange = function(){
 		this.value = null;
 	}
+	
+	//reset julian to today
+	O("today").onclick = function(){
+		julian.date = new Date( (new Date()).toDateString() );
+		julian.displayJulian().displayDate();
+		hideToday();
+	};
 })();
