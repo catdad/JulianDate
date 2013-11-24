@@ -101,11 +101,10 @@
 		newDate.setMonth = (month - 1); //month starts at 0
 		/* */
 		
-		var nd = new Date([year, month, day].join("-")); //get date from ISO string
+		//iPhone doesn't like iso date
+		//var nd = new Date([year, month, day].join("-")); //get date from ISO string
+		var nd = new Date(year, month-1, day);
 		
-		//var UTCDate = new Date( newDate.toDateString() ); //code expects UTC Date
-		
-		//return UTCDate;
 		return nd;
 	}
 	
@@ -220,8 +219,9 @@
 	
 	//immedaitely show changes
 	O("julianInput").oninput = function(ev){
-		if (this.value < 367 && this.value > 0)
-			julian.changeJulian(Number(this.value));
+		var val = +this.value; //force to number
+		if (val < 367 && val > 0)
+			julian.changeJulian(val);
 		else
 			julian.error();
 		
