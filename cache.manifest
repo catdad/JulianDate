@@ -1,9 +1,10 @@
 CACHE MANIFEST
 
-#v0.26
+#v0.27
 
 CACHE:
-favicon.png
+icon/icon192.png
 page.css
 julian.js
 index.html
+manifest.json
