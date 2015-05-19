@@ -216,3 +216,6 @@ pip-log.txt
 
 #art attributes
 art/
+
+#Node files
+node_modules
