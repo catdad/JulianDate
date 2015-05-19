@@ -5,9 +5,9 @@ html, body{
 	max-height: 100%;
 }
 
-body{
+body {
 	background-color: #e5e5e5;
-	color: #898989;
+	color: #263238;
 	font-family: sans-serif;
 	font-size: 1em;
 	text-align: center;
@@ -19,10 +19,13 @@ body{
 	padding: 0 0 .35em 0; /* bottom padding for the footer */
 }
 
-.hide{ display: none !important; }
-.show{ display: block; }
+* { box-sizing: border-box; }
+*:before, *:after { box-sizing: inherit; }
 
-.card{
+.hide { display: none !important; }
+.show { display: block; }
+
+.card {
 	position: relative;
 	margin: 1.8em auto;
 	padding: 50px 0;
@@ -35,18 +38,18 @@ body{
 	border-radius: 2px;
 }
 
-.card.short{ padding: 20px 0; }
-.cache.card{ background: #F8EEA5; }
+.card.short { padding: 20px 0; }
+.cache.card { background: #F8EEA5; }
 
 @-webkit-keyframes openCard{
-	0%{ max-height: 1em; background: rgba(255,255,255,.5); }
+	0%{ max-height: 3.4em; background: rgba(255,255,255,.5); }
 	30%{ background: white; }
-	100%{ max-height: 450px; }
+	100%{ max-height: 35em; }
 }
 @-webkit-keyframes closeCard{
-	0%{ max-height: 450px; background: white; }
+	0%{ max-height: 35em; background: white; }
 	70%{ background: white; }
-	100%{ max-height: 1em; background: rgba(255,255,255,.5); }
+	100%{ max-height: 3.4em; background: rgba(255,255,255,.5); }
 }
 @-webkit-keyframes textShow{
 	0%{ opacity: 0; }
@@ -61,19 +64,19 @@ body{
 
 .card.toggle{
 	overflow-y: hidden;
-	max-height: 1em;
+	max-height: 3.4em;
 	background: rgba(255,255,255,.5);	
 	/* hack to hardware accelerate css animations */
 	-webkit-transform: translate3d(0,0,0);
 }
 /* animate card open/close */
 .card.toggle.close{
-	max-height: 1em;
+	max-height: 3.4em;
 	-webkit-animation: closeCard .5s ease;
 }
 .card.toggle.open{
 	background: white;
-	max-height: 450px;
+	max-height: 35em;
 	-webkit-animation: openCard .5s ease;
 }
 /* animate text show/hide */
@@ -87,16 +90,28 @@ body{
 	line-height: 1.4em;
 }
 
-#date{
+#dateInput {
 	font-size: 2em;
 	margin-bottom: 10px;
+    
+    border: none;
+    text-align: center;
+    color: inherit;
 }
+#dateInput::-webkit-inner-spin-button,
+#dateInput::-webkit-clear-button { display: none; }
+#dateInput::-webkit-calendar-picker-indicator { opacity: 1; }
 
-#julian{
+#julianInput {
 	font-size: 10em;
+    max-width: 100%;
+    
+    border: none;
+    text-align: center;
+    color: inherit;
 }
 
-#today{
+#today {
 	position: absolute;
 	bottom: 0px;
 	right: 0px;
@@ -108,17 +123,9 @@ body{
 	left: 0;
 }
 
-#dateInput, #julianInput{
-	position: absolute;
-	top: 0;
-	width: 1px;
-	opacity: 0;
-	z-index: -1;
-	border: none;
-}
 #dateInput:focus, #julianInput:focus{ border: none; outline: none; }
 
-#footer{
+#footer {
 	position: fixed;
 	display: block;
 	width: 100%;
