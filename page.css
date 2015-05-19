@@ -93,6 +93,7 @@ body {
 #dateInput {
 	font-size: 2em;
 	margin-bottom: 10px;
+    background: none;
     
     border: none;
     text-align: center;
