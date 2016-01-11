@@ -1,4 +1,6 @@
-(function(){
+/* jshint browser: true */
+
+(function(window, document, navigator){
 	//helper - get element
 	function O(id){
 		return document.getElementById(id);
@@ -21,7 +23,7 @@
 			year = date.getUTCFullYear(),
 			doy = 0;
 			
-		switch(month){
+		switch(month) {
 			case 1:
 				doy = day;
 				break;
@@ -45,197 +47,193 @@
 		
 		switch(true){
 			case julian<=(31):
-				month = 1; //"January";
+				month = 1; //'January';
 				day = julian;
 				break;
 			case julian<=(59 + leap):
-				month = 2; //"February";
+				month = 2; //'February';
 				day = julian - 31;
 				break;
 			case julian<=(90 + leap):
-				month = 3; //"March";
+				month = 3; //'March';
 				day = julian - (59 + leap);
 				break;
 			case julian<=(120 + leap):
-				month = 4; //"April";
+				month = 4; //'April';
 				day = julian - (90 + leap);
 				break;
 			case julian<=(151 + leap):
-				month = 5; //"May";
+				month = 5; //'May';
 				day = julian - (120 + leap);
 				break;
 			case julian<=(181 + leap):
-				month = 6; //"June";
+				month = 6; //'June';
 				day = julian - (151 + leap);
 				break;
 			case julian<=(212 + leap):
-				month = 7; //"July";
+				month = 7; //'July';
 				day = julian - (181 + leap);
 				break;
 			case julian<=(243 + leap):
-				month = 8; //"August";
+				month = 8; //'August';
 				day = julian - (212 + leap);
 				break;
 			case julian<=(273 + leap):
-				month = 9; //"September";
+				month = 9; //'September';
 				day = julian - (243 + leap);
 				break;
 			case julian<=(304 + leap):
-				month = 10; //"October";
+				month = 10; //'October';
 				day = julian - (273 + leap);
 				break;
 			case julian<=(334 + leap):
-				month = 11; //"November";
+				month = 11; //'November';
 				day = julian - (304 + leap);
 				break;
 			default:
-				month = 12; //"December";
+				month = 12; //'December';
 				day = julian - (334 + leap);
 				break;
 		}
 		
-		/* don't know why this doesn't work
-		var newDate = new Date();
-		newDate.setDate = day;
-		newDate.setFullYear = year;
-		newDate.setMonth = (month - 1); //month starts at 0
-		/* */
-		
 		//iPhone doesn't like iso date
-		//var nd = new Date([year, month, day].join("-")); //get date from ISO string
+		//var nd = new Date([year, month, day].join('-')); //get date from ISO string
 		var nd = new Date(year, month-1, day);
 		
 		return nd;
 	}
 	
-	Date.prototype.getJulian = function(){ return getJulian(this); }
+	Date.prototype.getJulian = function(){ return getJulian(this); };
 	
 	var julian = {
-		//vars
 		date: new Date( (new Date()).toDateString() ), //code expects UTC date
-		julianDOM: O("julian"),
-		dateDOM: O("date"),
+		julianDOM: O('julianInput'),
+		dateDOM: O('dateInput'),
+        
+        cleanDate: function(date) {
+            return new Date(date.toDateString());
+        },
+        now: function() {
+            return this.cleanDate(new Date());
+        },
+        toIsoDate: function(date) {
+            return date.toISOString().substring(0,10);
+        },
 		
-		//functions
-		changeJulian: function(val){
-			this.date = getDate(val);
+		changeJulian: function(val) {
+            this.date = getDate(val);
 			this.displayJulian().displayDate();
 		},
-		changeDate: function(val){
+		changeDate: function(val) {
 			this.date = val;
 			this.displayJulian().displayDate();
 		},
-		error: function(){
-			this.julianDOM.innerHTML = "error";
-			this.dateDOM.innerHTML = "Invalid Date";
+		error: function() {
+            this.julianDOM.value = 'error';
+            this.dateDOM.value = '';
 		},
-		displayJulian: function(){
-			this.julianDOM.innerHTML = this.date.getJulian();
+		displayJulian: function() {
+			this.julianDOM.value = this.date.getJulian();
 			return this;
 		},
-		displayDate: function(){
-			this.dateDOM.innerHTML = this.date.toUTCString().substr(0, 16);
+		displayDate: function() {
+            this.dateDOM.value = this.toIsoDate(this.cleanDate(this.date));
 			return this;
 		}
-	}
+	};
 	
 	//initialize
 	window.julian = julian;
 	julian.displayJulian().displayDate();
 	
-	var infoCard = C("toggle card");
-	infoCard.trigger = C("trigger", infoCard);
-	infoCard.text = C("text", infoCard);
+	var infoCard = C('toggle card');
+	infoCard.trigger = C('trigger', infoCard);
+	infoCard.text = C('text', infoCard);
 	infoCard.trigger.onclick = function(ev){
-		if (infoCard.classList.contains("open")) {
-			infoCard.trigger.innerHTML = "More Info";
-			infoCard.classList.remove("open");
-			infoCard.classList.add("close");
+		if (infoCard.classList.contains('open')) {
+			infoCard.trigger.innerHTML = 'More Info';
+			infoCard.classList.remove('open');
+			infoCard.classList.add('close');
 		}
 		else {
-			infoCard.trigger.innerHTML = "Less Info";
-			infoCard.classList.remove("close");
-			infoCard.classList.add("open");
+			infoCard.trigger.innerHTML = 'Less Info';
+			infoCard.classList.remove('close');
+			infoCard.classList.add('open');
 		}
 	};
 	
 	//events
 	var showToday = function(){
-		O("dateInput").value = "";
-		O("today").classList.remove("hide");
-	}
+		O('today').classList.remove('hide');
+	};
 	
 	var hideToday = function(){
-		O("today").classList.add("hide");
-	}
+		O('today').classList.add('hide');
+	};
 	
 	function offlineMode(){
-		console.log("going offline");
-		
-		var card = document.getElementsByClassName("cache card")[0];
-		card.classList.remove("hide");
+		var card = document.getElementsByClassName('cache card')[0];
+		card.classList.remove('hide');
 	}
 	
 	function onlineMode(){
-		console.log("going online");
 		window.applicationCache.update(); //check for update
 		
-		var card = document.getElementsByClassName("cache card")[0];
-		card.classList.add("hide");
+		var card = document.getElementsByClassName('cache card')[0];
+		card.classList.add('hide');
 	}
 	
 	// online/offline listeners
 	if (window.applicationCache){
-		window.addEventListener( "offline", offlineMode, false);
-		window.addEventListener( "online", onlineMode, false);
-		window.applicationCache.addEventListener('noupdate', function(){ /* console.log("no update"); */ }, false);
+		window.addEventListener('offline', offlineMode, false);
+		window.addEventListener('online', onlineMode, false);
+		window.applicationCache.addEventListener('noupdate', function(){ 
+//            console.log('no update');
+        }, false);
 		window.applicationCache.addEventListener('updateready', function(){
 			window.applicationCache.swapCache();
-			console.log("swap cache");
 		}, false);
 	}
 	//initial check
 	if (!navigator.onLine) offlineMode();
 	
 	//select custom date
-	O("date").onclick = function(){
-		O("dateInput").focus();
-		O("dateInput").click();
-	};
-	
-	O("dateInput").onchange = function(ev){
-		this.click(); //hack necessary for immediate update
+	julian.dateDOM.onchange = function(ev) {
 		julian.changeDate( new Date(this.value) );
-		this.value = null;
-		
+        
 		showToday();
-	};
-	
-	//select custom julian
-	O("julian").onclick = function(){
-		O("julianInput").focus();
-		O("julianInput").click();
 	};
 	
 	//immedaitely show changes
-	O("julianInput").oninput = function(ev){
+    julian.julianDOM.addEventListener('focus', function() {
+        var that = this;
+        setTimeout(function(){
+            that.select();
+        }, 0);
+    });
+	julian.julianDOM.addEventListener('input', function(ev) {
 		var val = +this.value; //force to number
-		if (val < 367 && val > 0)
+        
+		if (!isNaN(val) && val < 367 && val > 0) {
 			julian.changeJulian(val);
-		else
-			julian.error();
+        }
 		
 		showToday();
-	};
-	//reset value to null
-	O("julianInput").onchange = function(){
-		this.value = null;
-	}
+	});
+    julian.julianDOM.addEventListener('change', function(ev) {
+        this.blur();
+        
+        var val = +this.value;
+        
+        if (isNaN(val) || val > 367 || val < 1) {
+            julian.error();
+        }
+    });
 	
 	//reset julian to today
-	O("today").onclick = function(){
-		julian.date = new Date( (new Date()).toDateString() );
+	O('today').onclick = function(){
+		julian.date = julian.now();
 		julian.displayJulian().displayDate();
 		hideToday();
 	};
-})();
+})(window, document, navigator);

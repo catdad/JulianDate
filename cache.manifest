@@ -4,7 +4,7 @@ CACHE MANIFEST
 
 CACHE:
 icon/icon192.png
-page.css
-julian.js
+page.min.css
+julian.min.js
 index.html
 manifest.json
